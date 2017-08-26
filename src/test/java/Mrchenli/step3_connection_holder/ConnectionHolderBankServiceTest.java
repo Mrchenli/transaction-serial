@@ -1,18 +1,19 @@
-package Mrchenli.step2_uglytest;
+package Mrchenli.step3_connection_holder;
 
 import Mrchenli.BaseTest;
-import Mrchenli.service.BankService;
-import Mrchenli.service.UglyBankServiceImpl;
+import Mrchenli.service.ConnectionHolderBankService;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
-public class UglyBankServiceTest extends BaseTest {
+public class ConnectionHolderBankServiceTest extends BaseTest {
+
 
     @Override
     public void initBankService() {
-        bankService =  new UglyBankServiceImpl(dataSource);
+        bankService = new ConnectionHolderBankService(dataSource);
     }
+
 
 
     @Test
@@ -24,6 +25,4 @@ public class UglyBankServiceTest extends BaseTest {
     public void transferFailureTest() throws SQLException {
         transferFailure();
     }
-
-
 }

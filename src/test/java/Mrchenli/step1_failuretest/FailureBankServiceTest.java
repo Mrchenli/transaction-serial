@@ -1,42 +1,37 @@
 package Mrchenli.step1_failuretest;
 
-import Mrchenli.BankFixture;
-import Mrchenli.step1_failure.FailureBankDao;
-import Mrchenli.step1_failure.FailureBankService;
-import Mrchenli.step1_failure.FailureInsuranceDao;
+import Mrchenli.BaseTest;
+import Mrchenli.dao.step1_failure.FailureBankDao;
+import Mrchenli.dao.step1_failure.FailureInsuranceDao;
+import Mrchenli.service.BankService;
+import Mrchenli.service.FailureBankServiceImpl;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
-import static junit.framework.Assert.assertEquals;
+public class FailureBankServiceTest extends BaseTest{
 
-public class FailureBankServiceTest extends BankFixture{
+    @Override
+    public void initBankService() {
+        bankService =  new FailureBankServiceImpl(dataSource);
+    }
 
     /**
      * 出账 入账 都 各自持有连接 如果出账成功入账异常就有问题了
      * @throws SQLException
      */
     @Test
-    public void transferSuccess() throws SQLException {
-        FailureBankDao failureBankDao = new FailureBankDao(dataSource);
-        FailureInsuranceDao failureInsuranceDao = new FailureInsuranceDao(dataSource);
-        FailureBankService bankService = new FailureBankService(failureBankDao,failureInsuranceDao,dataSource);
-        bankService.transfer(1111,2222,200.0F);
-        assertEquals(800.0F, getBankAmount(1111));
-        assertEquals(1200.0F, getInsuranceAmount(2222));
+    public void transferSuccessTest() throws SQLException {
+        transferSuccess();
     }
 
+    /**
+     * 这里运行会出错 a账户扣了200 b账户不存在 应该回滚 没回滚
+     * @throws SQLException
+     */
     @Test
-    public void transferFailure() throws SQLException {
-        FailureBankDao failureBankDao = new FailureBankDao(dataSource);
-        FailureInsuranceDao failureInsuranceDao = new FailureInsuranceDao(dataSource);
-        FailureBankService bankService = new FailureBankService(failureBankDao,failureInsuranceDao,dataSource);
-
-        int toNonExistId = 3333;
-        bankService.transfer(1111,toNonExistId,200.0F);
-
-        assertEquals(1000.0F, getInsuranceAmount(2222));
-        assertEquals(800.0F, getBankAmount(1111));
+    public void transferFailureTest() throws SQLException {
+        transferFailure();
     }
 
 }

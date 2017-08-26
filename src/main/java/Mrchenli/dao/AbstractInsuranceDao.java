@@ -1,13 +1,20 @@
-package Mrchenli.step2_ugly;
+package Mrchenli.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UglyInsuranceDao {
+public abstract class AbstractInsuranceDao implements InsuranceDao{
 
-    public void deposit(int insuranceId, float amount, Connection connection) throws SQLException {
+    @Override
+    public void deposit(int insuranceId, float amount) throws SQLException {
+       Connection connection = getConnection();
+       deposit(insuranceId,amount,connection);
+    }
+
+    @Override
+    public void deposit(int insuranceId, float amount,Connection connection) throws SQLException {
         if(!isExistId(insuranceId,connection)) throw new  RuntimeException("no insuranceId");
 
         String sql = "UPDATE INSURANCE_ACCOUNT SET INSURANCE_AMOUNT =INSURANCE_AMOUNT + ? WHERE INSURANCE_ID = ?";
@@ -17,7 +24,9 @@ public class UglyInsuranceDao {
         updateStatement.execute();
 
         updateStatement.close();
+        if(isConnectionClose()) connection.close();
     }
+
 
 
     private boolean isExistId(int bankId,Connection connection) throws SQLException {
@@ -29,5 +38,8 @@ public class UglyInsuranceDao {
         return resultSet.getInt(1)==1;
     }
 
+    public Connection getConnection() throws SQLException {return null;}
 
+
+    public abstract boolean isConnectionClose();
 }
