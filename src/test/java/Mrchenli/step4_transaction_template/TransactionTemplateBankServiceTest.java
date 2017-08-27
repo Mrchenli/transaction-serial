@@ -1,18 +1,16 @@
-package Mrchenli.step2_uglytest;
+package Mrchenli.step4_transaction_template;
 
 import Mrchenli.BaseTest;
-import Mrchenli.service.step2_ugly.UglyBankServiceImpl;
+import Mrchenli.service.step4_transaction_template.TransactionTemplateBankService;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
-public class UglyBankServiceTest extends BaseTest {
-
+public class TransactionTemplateBankServiceTest extends BaseTest {
     @Override
     public void initBankService() {
-        bankService =  new UglyBankServiceImpl(dataSource);
+        bankService = new TransactionTemplateBankService(dataSource);
     }
-
 
     @Test
     public void transferSuccessTest() throws SQLException {
@@ -23,6 +21,4 @@ public class UglyBankServiceTest extends BaseTest {
     public void transferFailureTest() throws SQLException {
         transferFailure();
     }
-
-
 }

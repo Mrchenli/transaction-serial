@@ -1,10 +1,7 @@
 package Mrchenli.step1_failuretest;
 
 import Mrchenli.BaseTest;
-import Mrchenli.dao.step1_failure.FailureBankDao;
-import Mrchenli.dao.step1_failure.FailureInsuranceDao;
-import Mrchenli.service.BankService;
-import Mrchenli.service.FailureBankServiceImpl;
+import Mrchenli.service.step1_failure.FailureBankServiceImpl;
 import org.junit.Test;
 
 import java.sql.SQLException;
