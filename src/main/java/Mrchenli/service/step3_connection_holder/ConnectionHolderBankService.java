@@ -1,8 +1,9 @@
-package Mrchenli.service;
+package Mrchenli.service.step3_connection_holder;
 
 import Mrchenli.dao.step3_connection_holder.ConnectionHolderBankDao;
 import Mrchenli.dao.step3_connection_holder.ConnectionHolderInsuranceDao;
 import Mrchenli.dao.step3_connection_holder.TransactionManager;
+import Mrchenli.service.AbstractService;
 
 import javax.sql.DataSource;
 

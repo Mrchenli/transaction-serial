@@ -1,7 +1,7 @@
 package Mrchenli.step3_connection_holder;
 
 import Mrchenli.BaseTest;
-import Mrchenli.service.ConnectionHolderBankService;
+import Mrchenli.service.step3_connection_holder.ConnectionHolderBankService;
 import org.junit.Test;
 
 import java.sql.SQLException;
