@@ -1,7 +1,5 @@
 package Mrchenli.service.step1_failure;
 
-import Mrchenli.dao.BankDao;
-import Mrchenli.dao.InsuranceDao;
 import Mrchenli.dao.step1_failure.FailureBankDao;
 import Mrchenli.dao.step1_failure.FailureInsuranceDao;
 import Mrchenli.service.AbstractService;

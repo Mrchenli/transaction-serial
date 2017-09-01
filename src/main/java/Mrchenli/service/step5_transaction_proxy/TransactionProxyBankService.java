@@ -1,7 +1,5 @@
 package Mrchenli.service.step5_transaction_proxy;
 
-import Mrchenli.dao.BankDao;
-import Mrchenli.dao.InsuranceDao;
 import Mrchenli.dao.step3_connection_holder.ConnectionHolderBankDao;
 import Mrchenli.dao.step3_connection_holder.ConnectionHolderInsuranceDao;
 import Mrchenli.service.AbstractService;

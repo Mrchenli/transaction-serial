@@ -1,4 +1,8 @@
-package Mrchenli.dao.step3_connection_holder;
+package Mrchenli.myspring.demo.transactionpackage;
+
+import Mrchenli.dao.step3_connection_holder.SingleThreadConnectionHolder;
+import io.mrchenli.aop.aopserial.ioc.annotation.Component;
+import io.mrchenli.aop.aopserial.ioc.annotation.Inject;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -9,14 +13,12 @@ import java.sql.SQLException;
  * 讲道理只要SingleThreadConnectionHolder就够了的
  * 这个是对事物的流程做的一个封装
  */
-
+@Component("transactionManager")
 public class TransactionManager {
 
+    @Inject(name = "dataSource")
     private DataSource dataSource;
 
-    public TransactionManager(DataSource dataSource){
-        this.dataSource = dataSource;
-    }
     //      --thread1
     //          --ConnectionHolder
     //              --dataSource:connection
